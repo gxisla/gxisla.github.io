@@ -1,1 +1,11 @@
-theme: jekyll-theme-slate
+title: Ĝis la
+description: A site for me (us)
+url: gxisla.github.io
+
+theme: jekyll-theme-minimal
+
+author:
+    name: Matías Grioni
+    email: matgrioni@gmail.com
+    location: Seattle
+    github: matgrioni
