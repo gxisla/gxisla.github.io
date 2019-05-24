@@ -5,11 +5,11 @@ date: 2019-05-23 10:32:31
 categories: csharp
 ---
 
-Introduction
+### Introduction
 
 C# allows developers to define type equality through two mechanisms: equality operator overloading, `==`, and `Equals(object)` method overriding. Many user defined types leverage both, allowing equality operations through operator notation or method invocation. Often, the `==` operator definition simply calls the `Equals(object)` method, so that these operations are equivalent and provide flexible syntax. However, the two operations are fundamentally different in C#, even if they appear interchangable.
 
-Problem
+### Problem
 
 Defined below is a simple two dimensional point class supporting equality. The equality definitions follow the [MSDN](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/how-to-define-value-equality-for-a-type) guide for C#. The hash code implementation follows guidance from [Programming in Scala, Chapter 28](https://www.artima.com/pins1ed/object-equality.html).
 
@@ -91,10 +91,10 @@ The difference between operator and method resolution becomes obvious on lines 3
 
 However, a call to `Equals(object)` resolves based on the runtime type of the receiver. `Point` overrides the `Equals(object)` method and this is chosen for invocation at runtime on line 3, while line 4 uses the `object` definition of equality. The `==` operator can be errouneously thought of as syntactic sugar for `Equals(object)`, but the internal mechanics of C# mean these two have a crucial difference.
 
-Conclusion
+### Conclusion
 
 Pragmatically, operator overloading is treated as syntactic sugar for instance method calls, and so the above result can clash with expectations. From the design perspective, it is tempting to consider this result oversight or poor design; however, locally, the C# designers made reasonable decisions. By defining operators as static methods, truly symmetric operators can be defined, and operator overloading is not simply glorified syntatic sugar. Similarly, polymorphic method resolution is ubiquitous across today's OOP languages. When these local decisions are combined into an integrated whole, new behavior emerges that clashes with often loose formalism.
 
 Notes:
 
-If you are interested in more discussion about the design decisions behind `==` and `Equals(object)`, Eric Lippert wrote a (small blog post)[https://blogs.msdn.microsoft.com/ericlippert/2009/04/09/double-your-dispatch-double-your-fun/] on the topic.
+If you are interested in more discussion about the design decisions behind `==` and `Equals(object)`, Eric Lippert wrote a [small blog post](https://blogs.msdn.microsoft.com/ericlippert/2009/04/09/double-your-dispatch-double-your-fun/) on the topic.
