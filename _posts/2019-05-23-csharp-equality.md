@@ -11,8 +11,9 @@ C# allows developers to define type equality through two mechanisms: equality op
 
 Problem
 
-Defined below is a simple two dimensional point class supporting equality. The equality definitions follow the (MSDN)[https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/how-to-define-value-equality-for-a-type] guide for C#. The hash code implementation follows guidance from (Programming in Scala, Chapter 28)[https://www.artima.com/pins1ed/object-equality.html].
+Defined below is a simple two dimensional point class supporting equality. The equality definitions follow the [MSDN](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/how-to-define-value-equality-for-a-type) guide for C#. The hash code implementation follows guidance from [Programming in Scala, Chapter 28](https://www.artima.com/pins1ed/object-equality.html).
 
+```
 class Point : IEquatable<Point>
 {
 	public int X { get; }
@@ -69,9 +70,11 @@ class Point : IEquatable<Point>
 		return !(lhs == rhs);
 	}
 }
+```
 
 Now consider the following code snippet, where the two equality mechanisms are used.
 
+```
 // Two point references with same internal values
 Point p1 = new Point(1, 3);
 Point p2 = new Point(1, 3);
@@ -82,6 +85,7 @@ Console.WriteLine(p1.Equals(p2)); // True, uses Equals(Point) on Point
 Console.WriteLine(p1 == p2); // True, matches operator overload signature on Point class
 Console.WriteLine(o1.Equals(o2)); // True, uses Equals(object) defined on Point class
 Console.WriteLine(o1 == o2); // False, uses object's == operator (reference equality)
+```
 
 The difference between operator and method resolution becomes obvious on lines 3 and 4. Overloaded operator calls are static methods that are resolved at compile time using compile time types. Instance method calls support polymorphism and are resolved at runtime. Using `==` on variables with the static type `object` will always result in a reference comparison, and will call `static bool operator ==(object, object)` defined on the `object` class. This behavior is fixed as static methods cannot be overridden, and an operator overload must have at least one argument with the type of the containing class. Thus `static bool operator ==(object, object)` cannot be defined on the `Point` class.
 
