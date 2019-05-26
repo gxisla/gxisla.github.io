@@ -1,6 +1,7 @@
 title: Ĝis la
 description: A project for me (us)...
 url: gxisla.github.io
+baseurl: gxisla.github.io
 
 theme: jekyll-theme-minimal
 
