@@ -87,7 +87,11 @@ Console.WriteLine(o1.Equals(o2)); // True, uses Equals(object) defined on Point 
 Console.WriteLine(o1 == o2); // False, uses object's == operator (reference equality)
 ```
 
-The difference between operator and method resolution becomes obvious on lines 3 and 4. Overloaded operator calls are static methods that are resolved at compile time using compile time types. Instance method calls support polymorphism and are resolved at runtime. Using `==` on variables with the static type `object` will always call the reference equality implementation on `object`. This behavior is fixed since static methods cannot be overridden, and an operator overload must have at least one argument with the type of the containing class. Thus `static bool operator ==(object, object)` cannot be defined on the `Point` class. However, a call to `Equals(object)` resolves based on the runtime type of the receiver. `Point` overrides the `Equals(object)` method and this is chosen for invocation at runtime on line 3, while line 4 uses the `object` definition of equality. The `==` operator can be errouneously thought of as syntactic sugar for `Equals(object)`, but the internal mechanics of C# mean these two have a crucial difference. This example used the classes `object` and `Point`, but this behavior would be seen with any polymorphic setup.
+The difference between operator and method resolution becomes obvious on lines 3 and 4.
+
+Overloaded operator calls are static methods that are resolved at compile time using compile time types. Instance method calls support polymorphism and are resolved at runtime. Using `==` on variables with the static type `object` will always call the reference equality implementation on `object`. This behavior is fixed since static methods cannot be overridden, and an operator overload must have at least one argument with the type of the containing class.
+
+Thus `static bool operator ==(object, object)` cannot be defined on the `Point` class. However, a call to `Equals(object)` resolves based on the runtime type of the receiver. `Point` overrides the `Equals(object)` method and this is chosen for invocation at runtime on line 3, while line 4 uses the `object` definition of equality. The `==` operator can be errouneously thought of as syntactic sugar for `Equals(object)`, but the internal mechanics of C# mean these two have a crucial difference. This example used the classes `object` and `Point`, but this behavior would be seen with any polymorphic setup.
 
 ### Conclusion
 
