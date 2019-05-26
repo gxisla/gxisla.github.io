@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Emergent properties in C# Equality
-date: 2019-05-25
+date: 2019-05-26
 categories: csharp
 ---
 
@@ -13,7 +13,7 @@ C# allows developers to define type equality through two mechanisms: equality op
 
 A class definition of a two dimensional point is found below. The equality definitions on this class follow the [MSDN](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/how-to-define-value-equality-for-a-type) guide for C#. The hash code implementation follows guidance from [Programming in Scala, Chapter 28](https://www.artima.com/pins1ed/object-equality.html).
 
-~~~ c#
+~~~ csharp
 class Point : IEquatable<Point>
 {
 	public int X { get; }
@@ -74,7 +74,7 @@ class Point : IEquatable<Point>
 
 Now consider the following code snippet, where the two equality mechanisms are used.
 
-~~~ c#
+~~~ csharp
 // Two point references with same internal values
 Point p1 = new Point(1, 3);
 Point p2 = new Point(1, 3);
