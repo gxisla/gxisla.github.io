@@ -97,6 +97,4 @@ Thus `static bool operator ==(object, object)` cannot be defined on the `Point` 
 
 Pragmatically, operator overloading is treated as syntactic sugar for instance method calls, and so the above result can clash with expectations. From the design perspective, it is tempting to consider this result an oversight or poor design; however, locally, the C# designers made reasonable decisions. By defining operators as static methods, truly symmetric operators can be defined, and operator overloading is not simply glorified syntatic sugar. Similarly, polymorphic method resolution is ubiquitous across today's OOP languages. When these local decisions are combined into an integrated whole, new behavior emerges that clashes with often loose formalism.
 
-Notes:
-
 If you are interested in more discussion about the design decisions behind `==` and `Equals(object)`, Eric Lippert wrote a [small blog post](https://blogs.msdn.microsoft.com/ericlippert/2009/04/09/double-your-dispatch-double-your-fun/) on the topic.
